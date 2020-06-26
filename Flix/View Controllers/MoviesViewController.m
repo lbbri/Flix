@@ -45,9 +45,29 @@
      NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error"
+                                                                           message:@"There seems to be a problem with the network connection."
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+    // create an OK action
+    UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                         // handle response here.
+        [self fetchMovies];
+                                                 }];
+// add the OK action to the alert controller
+[alert addAction:tryAgainAction];
+    
+    
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
+               
+               [self presentViewController:alert animated:YES completion:^{
+    // optional code for what happens after the alert controller has finished presenting
+                   
+               }];
+               //add error message here
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -58,6 +78,7 @@
                for(NSDictionary *movie in self.movies){
                    NSLog(@"%@", movie[@"title"]);
                }
+               
                
                [self.tableView reloadData];
 
