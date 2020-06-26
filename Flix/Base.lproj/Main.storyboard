@@ -15,6 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="0b3-fx-CoU">
+                            <rect key="frame" x="0.0" y="264" width="414" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="208" id="wNm-VY-fkf" customClass="MovieCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="208"/>
@@ -58,6 +63,7 @@
                         <barButtonItem key="backBarButtonItem" title="Movies" id="XpF-Mc-BoD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="0b3-fx-CoU" id="NQw-rL-bg2"/>
                         <outlet property="tableView" destination="F3z-r9-qcG" id="0Pb-w2-R4a"/>
                     </connections>
                 </viewController>
