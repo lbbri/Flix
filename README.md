@@ -49,8 +49,8 @@ GIF created with [RecordIt](https://recordit.co/).
 
 ## Notes
 
-The most difficult part of this project was the XCode and GitHub learning curve.
-'User sees a loading state while waiting for the movies API.' feature is working, but could not be captured by the screen recording.
+- The most difficult part of this project was the XCode and GitHub learning curve.
+- 'User sees a loading state while waiting for the movies API.' feature is working, but could not be captured by the screen recording.
 
 
 ## Credits
