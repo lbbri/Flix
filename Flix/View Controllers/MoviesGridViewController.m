@@ -27,12 +27,17 @@
     
     [self fetchMovies];
     
+    //layout for Collection View
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     
+    
+    //can also set in storyboard
     layout.minimumInteritemSpacing = 5;
     layout.minimumLineSpacing = 5;
     
-    CGFloat postersPerLine = 2;
+    CGFloat postersPerLine = 3;
+    
+    //correctly calculates layout based on how many movies are on each row
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine-1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     
@@ -51,7 +56,6 @@
 
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
-              
                //add network error message here
            }
            else {
@@ -60,11 +64,6 @@
                self.movies = dataDictionary[@"results"];
                [self.collectionView reloadData];
                
-               
-               
-               // TODO: Get the array of movies
-               // TODO: Store the movies in a property to use elsewhere
-               // TODO: Reload your table view data
            }
         
        }];
@@ -82,6 +81,7 @@
 */
 
 
+//necessary function to implement UICollectionViewDataSource similar to TableView
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
     NSDictionary *movie = self.movies[indexPath.item];
@@ -97,6 +97,7 @@
     return cell;
 }
 
+//necessary function to implement UICollectionViewDataSource similar to TableView
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.movies.count;
 }

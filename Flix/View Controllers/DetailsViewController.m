@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shadowTLabel;
 
 @end
 
@@ -40,8 +41,10 @@
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
     self.dateLabel.text = self.movie[@"release_date"];
+    self.shadowTLabel.text = self.movie[@"title"];
     
     [self.titleLabel sizeToFit];
+    [self.shadowTLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
     [self.dateLabel sizeToFit];
     // Do any additional setup after loading the view.
